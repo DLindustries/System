@@ -22,6 +22,11 @@
 
 ## 🔧 Improvements Over Original Argon Client
 
+**ORIGINAL PROJECT**
+
+https://github.com/LvStrnggg/argon/
+
+
 This fork is approximately **75% based on the original Argon**, but with focused optimizations for **bypassing Vulcan** and reducing flagging on **Grim Anticheat**. It's a graphics and anticheat-optimized version of Argon with the following key changes:
 
 - **Legit Autototem (HoverTotem-Like)**
