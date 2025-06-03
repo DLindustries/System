@@ -1,0 +1,11 @@
+run
+.idea
+.gradle
+build
+.env
+/client/**/interface.zip
+client/launcher.log
+imgui.ini
+admin-tools-config.json
+.DS_Store
+out

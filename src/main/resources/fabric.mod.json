@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "System",
+  "version": "1.2.11+1.21",
+  "name": "System",
+  "description": "Speed up and optimize crystal pvp gameplay using legitimate optimizers",
+  "authors": [
+    "DL_industries"
+  ],
+  "contact": {
+    "discord": "https://discord.gg/yynpznJVkC"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/immediatelyfast/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dlindustries.vigillant.system.Main"
+    ]
+  },
+  "mixins": [
+    "client.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "~1.21"
+  },
+  "recommends": {
+    "sodium": "*"
+  },
+  "conflicts": {
+    "slight-gui-modifications": "*",
+    "vulkanmod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/dCzT9XHEWu"
+      }
+    }
+  }
+}
