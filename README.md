@@ -31,7 +31,7 @@ This fork is approximately **75% based on the original Argon**, but with focused
 
 - **Legit Autototem (HoverTotem-Like)**
   - Introduced **dynamic delay** to simulate human-like behavior
-  - Prevents **impossible slot action B** with `dhandmod`
+  - Prevents **impossible slot action B** with [DhandMod](https://github.com/DLindustries/D-hand-mod/). 
 
 - **Misclick Optimizer**
   - Rewritten and extended from Argon's original
