@@ -20,23 +20,43 @@
 
 </div>
 
-Argon client fork that is still 75% argon that completely bypasses vulcan and flags much less on Grim AC
+## 🔧 Improvements Over Original Argon Client
 
-improved autototem legit - literally hovertotem by adding dynamic delay to simulate human behaviour and prevent impossible slot action B with dhandmod
+**ORIGINAL PROJECT**
 
-added misclick optimizer - prevent in argon - with more functions and recode to prevent packet order B flags in grim and Multiactions F flagging in the original - pair with autocrystal and anchor macro
-
-added option in keypearl with switchback slot selection for dtapping and pearl flashing efficiency and no more packet order b flags in original
-
-added placement optimizer with anchor exclusion to look more legit with anchor macro
-
-made their ass Target hud look better and sleek with additional opponent info
-
-added Camera optimizer for better pvp experience - pair with freelook mod
-
-i cant lie not too much has been added and edited from the original argon. System is merely a graphics and anticheat optimized fork of argon.
+https://github.com/LvStrnggg/argon/
 
 
+This fork is approximately **75% based on the original Argon**, but with focused optimizations for **bypassing Vulcan** and reducing flagging on **Grim Anticheat**. It's a graphics and anticheat-optimized version of Argon with the following key changes:
+
+- **Legit Autototem (HoverTotem-Like)**
+  - Introduced **dynamic delay** to simulate human-like behavior
+  - Prevents **impossible slot action B** with [DhandMod](https://github.com/DLindustries/D-hand-mod/). 
+
+- **Misclick Optimizer**
+  - Rewritten and extended from Argon's original
+  - Prevents **packet order B flags** (Grim)
+  - Reduces **Multiactions F flagging**
+  - Best paired with **AutoCrystal** and **Anchor Macro**
+
+- **KeyPearl Enhancements**
+  - Added **switchback slot selection** for faster **double-tapping** and **pearl flashing**
+  - Eliminates **packet order B flagging** from original
+
+- **Placement Optimizer**
+  - Allows faster crystal placement pair with autocrystal, removing 2 tick placement delay - bypasses vulcan and grim
+  - allows quick block up useful for cpvp
+  - Now includes **anchor exclusion** to improve legit like gameplay with Anchor Macro
+
+- **Target HUD Improvements**
+  - Sleeker and cleaner design
+  - Displays **extra opponent information** for PvP clarity
+
+- **Camera Optimizer**
+  - Improved camera control for better PvP experience such as no clip and water+ lava visual optimizers
+  - Designed to work well with **Freelook mod**
+
+> ⚠️ Note: This is not a full rewrite — it's still fundamentally Argon, but with meaningful tweaks to **bypass**, **optimize**, and **refine** both visuals and behavior for smoother gameplay under grim anticheat and vulcan.
 
 
 
