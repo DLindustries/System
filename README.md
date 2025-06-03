@@ -1,14 +1,95 @@
-# system Minecraft Ghost Client
+<div align="center">
+    <img src="https://img.shields.io/github/issues/DLindustries/System?style=flat" alt="issues">
+    <img src="https://img.shields.io/badge/license-GPLV3-green" alt="License">
+    <img src="https://tokei.rs/b1/github/DLindustries/System?category=code&style=flat" alt="Lines of code">
+</p>
 
-Originally a paid client, but since the new owner dumped me from the dev team of MY OWN CLIENT (yes, the client I STARTED and made about 85% of the client (but only got 30% of all the money made what the scam)) and demoted me, I decided to release the source code. I will try to update this as much as possible. I have updated the client to 1.21 but the damage utils are broken because mojang and fabric decide to change irrelevant stuff every update. The client cost 15 pounds for normal and 25 for beta, which ablue never ever finished and it turns out you just paid 10 bucks for the same shit. Ablue also ignores my DMs. When she does it's always the nword, insulting me or just a question mark. Ablue has also deleted a lot of old messages from my DMs and from other's too, you maybe might notice if you go through her DMs.
+[![Github Release Downloads](https://img.shields.io/github/downloads/DLindustries/System/total?label=Github%20Release%20Downloads&style=flat-square)](https://github.com/DLindustries/System/releases)
 
-This version of the client has auth removed COMPLETELY, so don't worry, the client won't crash on launch because of ablue's scary code. This version of the client also does NOT hide strings from memory, since ablue never really gave me full access over my own client (that being: giving me the string transformer so i can hide strings in memory). The code for hiding strings is in `EncryptedString`. If you do create one and want to support the project, please DM me on discord (I will not be buying the transformer): ```lvstrng```
 
-NOTE: Some of the stuff here is pasted by ablue lmaooo (Not damage utils, I was lazy to make damage utils for 1.21 so i just pasted from meteor client)
 
-# How to build
 
-- Launch the project in IntelliJ
-- Make a new configuration and make it do `build`
-- Find jar in project's `build/libs` (name should be system-b1.1.jar unless you change it)
-![image](https://github.com/user-attachments/assets/b2e8853e-2916-4219-9443-85ff7549d418)
+
+
+
+[YouTube](https://youtube.com/@quoly)
+
+<a href="https://discord.gg/yynpznJVkC"><img src="https://invidget.switchblade.xyz/yynpznJVkC" alt="https://discord.gg/yynpznJVkC"/></a><br>
+
+## Mod description
+
+</div>
+
+Argon client fork that is still 75% argon that completely bypasses vulcan and flags much less on Grim AC
+
+improved autototem legit - literally hovertotem by adding dynamic delay to simulate human behaviour and prevent impossible slot action B with dhandmod
+
+added misclick optimizer - prevent in argon - with more functions and recode to prevent packet order B flags in grim and Multiactions F flagging in the original - pair with autocrystal and anchor macro
+
+added option in keypearl with switchback slot selection for dtapping and pearl flashing efficiency and no more packet order b flags in original
+
+added placement optimizer with anchor exclusion to look more legit with anchor macro
+
+made their ass Target hud look better and sleek with additional opponent info
+
+added Camera optimizer for better pvp experience - pair with freelook mod
+
+i cant lie not too much has been added and edited from the original argon. System is merely a graphics and anticheat optimized fork of argon.
+
+
+
+
+
+
+
+however 
+## GUI
+
+
+![Image](https://github.com/user-attachments/assets/88b1b338-7ac7-4e9b-b4ce-a31aa9ea5d69)
+
+
+## Issues
+
+If you notice any bugs or missing features, you can let us know by opening an issue [here](https://github.com/DLindustries/System/issues).
+
+## License
+
+This project is subject to the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html). This does only apply for source code located directly in this clean repository. During the development and compilation process, additional source code may be used to which we have obtained no rights. Such code is not covered by the GPL license.
+
+For those who are unfamiliar with the license, here is a summary of its main points. This is by no means legal advice nor legally binding.
+
+**Actions that you are allowed to do:**
+
+- Use
+- Share
+- Modify
+
+**If you do decide to use ANY code from the source:**
+
+- **You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source (or even obfuscated) application.**
+- **Your modified application must also be licensed under the GPL.**
+
+## Developing System
+
+System uses Gradle to build the client. Install the latest version of Gradle onto your computer and install IntelliJ IDEA Ultimate, or use the free community edition.
+
+1. Clone the repository using `git clone --recurse-submodules https://github.com/DLindustries/System`.
+2. CD into the local repository with the command `cd System`.
+3. Run `./gradlew genSources`.
+4. Open the folder in IntelliJ — feel free to recode the client.
+5. To build, simply run `./gradlew build` or create a run configuration for Gradle with the build command.
+6. Enjoy System! :D
+
+## Addition info
+
+For those who are saying skid this IS a repaste of argon with extended utillities and improved modules to reduce anticheat flags on grim
+## Contributing
+
+We appreciate contributions. So if you want to support us, feel free to make changes to System's source code and submit a pull request
+
+TY enjoy System
+<div align="center">
+
+
+
