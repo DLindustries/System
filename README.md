@@ -66,7 +66,8 @@ however
 ## GUI
 
 
-![Image](https://github.com/user-attachments/assets/88b1b338-7ac7-4e9b-b4ce-a31aa9ea5d69)
+![gui](https://github.com/user-attachments/assets/105ce9a6-8dfd-446d-9b79-277b9ec9e015)
+
 ![Image](https://github.com/user-attachments/assets/81a349a4-01f3-43d8-8728-928a8af3e916)
 
 ![Screenshot ](https://github.com/user-attachments/assets/23832c9f-33e0-438f-86b9-a5bc885b9ee2)
