@@ -69,9 +69,9 @@ however
 ![Image](https://github.com/user-attachments/assets/88b1b338-7ac7-4e9b-b4ce-a31aa9ea5d69)
 ![Image](https://github.com/user-attachments/assets/81a349a4-01f3-43d8-8728-928a8af3e916)
 
-![Image](https://github.com/user-attachments/assets/d28c1bdc-21b9-4ba1-aa76-08821874da42)
+![Screenshot ](https://github.com/user-attachments/assets/23832c9f-33e0-438f-86b9-a5bc885b9ee2)
+![Screenshot ](https://github.com/user-attachments/assets/b5747333-413d-40ad-b40c-35d272b5d9b6)
 
-![Image](https://github.com/user-attachments/assets/f53e9639-9c0b-4e03-95a2-076cc00ff915)
 
 
 ## Issues
