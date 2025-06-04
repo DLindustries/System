@@ -50,7 +50,7 @@ public final class TriggerBot extends Module implements TickListener, AttackList
 			.setDescription(EncryptedString.of("Wont hit if you're ascending from a jump, only if on ground or falling"));
 	private final BooleanSetting clickSimulation = new BooleanSetting(EncryptedString.of("Click Simulation"), false)
 			.setDescription(EncryptedString.of("Makes the CPS hud think you're legit"));
-	private final BooleanSetting strayBypass = new BooleanSetting(EncryptedString.of("Stray Bypass"), false)
+	private final BooleanSetting strayBypass = new BooleanSetting(EncryptedString.of("Stray Bypass"), true)
 			.setDescription(EncryptedString.of("Bypasses stray's Anti-TriggerBot"));
 	private final BooleanSetting allEntities = new BooleanSetting(EncryptedString.of("All Entities"), false)
 			.setDescription(EncryptedString.of("Will attack all entities"));

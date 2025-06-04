@@ -19,14 +19,14 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import org.lwjgl.glfw.GLFW;
 
-public final class AutoHitCrystal extends Module implements TickListener, ItemUseListener, AttackListener {
+public final class dtapsetup extends Module implements TickListener, ItemUseListener, AttackListener {
 	private final KeybindSetting activateKey = new KeybindSetting(EncryptedString.of("Activate Key"), GLFW.GLFW_MOUSE_BUTTON_RIGHT, false)
-			.setDescription(EncryptedString.of("Key that does hit crystalling"));
+			.setDescription(EncryptedString.of("Bind to your Crystal keybind"));
 	private final BooleanSetting checkPlace = new BooleanSetting(EncryptedString.of("Check Place"), false)
 			.setDescription(EncryptedString.of("Checks if you can place the obsidian on that block"));
-	private final NumberSetting switchDelay = new NumberSetting(EncryptedString.of("Switch Delay"), 0, 20, 2, 1);
+	private final NumberSetting switchDelay = new NumberSetting(EncryptedString.of("Switch Delay"), 0, 20, 0, 1);
 	private final NumberSetting switchChance = new NumberSetting(EncryptedString.of("Switch Chance"), 0, 100, 100, 1);
-	private final NumberSetting placeDelay = new NumberSetting(EncryptedString.of("Place Delay"), 0, 20, 2, 1);
+	private final NumberSetting placeDelay = new NumberSetting(EncryptedString.of("Place Delay"), 0, 20, 0, 1);
 	private final NumberSetting placeChance = new NumberSetting(EncryptedString.of("Place Chance"), 0, 100, 100, 1).setDescription(EncryptedString.of("Randomization"));
 	private final BooleanSetting workWithTotem = new BooleanSetting(EncryptedString.of("Work With Totem"), false);
 	private final BooleanSetting workWithCrystal = new BooleanSetting(EncryptedString.of("Work With Crystal"), false);
@@ -40,9 +40,9 @@ public final class AutoHitCrystal extends Module implements TickListener, ItemUs
 	private boolean crystalling;
 	private boolean crystalSelected;
 
-	public AutoHitCrystal() {
-		super(EncryptedString.of("Auto Hit Crystal"),
-				EncryptedString.of("Automatically hit-crystals for you"),
+	public dtapsetup() {
+		super(EncryptedString.of("Dtap setup"),
+				EncryptedString.of("DO NOT USE ON SERVERS WITH GRIM AC. easily detected. an example is DonutSMP, Pvphub."),
 				-1,
 				Category.CRYSTAL);
 		addSettings(activateKey, checkPlace, switchDelay, switchChance, placeDelay, placeChance, workWithTotem, workWithCrystal, clickSimulation, swordSwap);

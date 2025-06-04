@@ -78,7 +78,7 @@ public final class HoverTotem extends Module implements TickListener {
 	private int getDynamicDelay() {
 		int base = delay.getValueInt();
 		if (safeMode) {
-			base += 1; // Add 50ms (1 tick) delay in safe mode
+			base += 2; // Add 50ms (1 tick) delay in safe mode
 		}
 		if (dynamicDelay.getValue()) {
 			return Math.max(0, base + ThreadLocalRandom.current().nextInt(-2, 3));

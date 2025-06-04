@@ -33,7 +33,7 @@ public final class TotemOffhand extends Module implements TickListener {
     private double currentJitterFactor = 1.0;
 
     public TotemOffhand() {
-        super("Auto offhand", "Basically undetectable autototem - pair with legit autototem", -1, Category.CRYSTAL);
+        super("Auto offhand", "Slightly better offhand module off argon - use autototem legit instead, detectable on totemguard and xtotem", -1, Category.CRYSTAL);
         addSettings(minSlotDelay, maxSlotDelay, offhandDelay, dynamicJitter, switchBack);
     }
 
