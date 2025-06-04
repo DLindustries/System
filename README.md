@@ -73,6 +73,42 @@ however
 ![Screenshot ](https://github.com/user-attachments/assets/b5747333-413d-40ad-b40c-35d272b5d9b6)
 
 
+## Configs
+
+**Grim AC** - PvpHub, Donut SMP, and likely any other large Popular servers.
+
+DON'T USE
+ - Autototem-blatant
+  - Autocrystal to lower than 2 ticks for both break and place
+  - Anchor Macro set to super fast - 0 ticks - test on loyisa.cn anticheat test server
+  - dtapsetup AT ALL
+  - break optimizer
+  - jump optimizer
+  - totem offhand
+
+*YOU MUST*
+- auto xp not 0 delay
+- misclick optimizer MUST BE ENABLED WITH ALL SUBFUNCTIONS
+- placement optimizer MUST EXCLUDE ANCHORS
+- Use common sense, most 0 delays flag. Please check using a Anticheat server - eu.loyisa.cn
+
+**Vulcan and other insignificant anticheats** - Eupvp.net, mcprac.net, mcpvp.club, Pvp Legacy, Stray.gg
+
+Most modules bypasses. If you want safety, then:
+
+*Use the same config for Grim AC BUT*
+
+- you can use anchor macro safe and quickly using the DEFAULT settings.
+- you can use Dig optimizer
+- you can use jump optimizer
+- you can use dtapsetup
+
+**This is only a guide/general idea. For your own safety, i HIGHLY recommend you test your configs on a anticheat test server. BEFORE playing any of your favourite servers.**
+
+
+
+
+
 
 ## Issues
 
