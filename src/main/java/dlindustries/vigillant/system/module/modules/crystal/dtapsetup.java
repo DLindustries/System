@@ -19,7 +19,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import org.lwjgl.glfw.GLFW;
 
-public final class AutoHitCrystal extends Module implements TickListener, ItemUseListener, AttackListener {
+public final class dtapsetup extends Module implements TickListener, ItemUseListener, AttackListener {
 	private final KeybindSetting activateKey = new KeybindSetting(EncryptedString.of("Activate Key"), GLFW.GLFW_MOUSE_BUTTON_RIGHT, false)
 			.setDescription(EncryptedString.of("bind to your crystal keybind - make sure you attempt to place obi to reduce flags"));
 	private final BooleanSetting checkPlace = new BooleanSetting(EncryptedString.of("Check Place"), false)
@@ -40,7 +40,7 @@ public final class AutoHitCrystal extends Module implements TickListener, ItemUs
 	private boolean crystalling;
 	private boolean crystalSelected;
 
-	public AutoHitCrystal() {
+	public dtapsetup() {
 		super(EncryptedString.of("D-tap optimizer"),
 				EncryptedString.of("Optimizes placement of obsidian for easy hit crystal/dtaps"),
 				-1,

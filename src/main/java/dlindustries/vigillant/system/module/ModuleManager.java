@@ -43,7 +43,7 @@ public final class ModuleManager implements ButtonListener {
 		add(new AnchorMacro());
 		add(new AutoCrystal());
 		add(new AutoDoubleHand());
-		add(new AutoHitCrystal());
+		add(new dtapsetup());
 		add(new AutoInventoryTotem());
 		add(new TotemOffhand());
 		add(new KeyPearl());
