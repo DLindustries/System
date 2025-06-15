@@ -21,7 +21,7 @@ public final class system {
 	public EventManager eventManager;
 	public FriendManager friendManager;
 	public static MinecraftClient mc;
-	public String version = " b1.3";
+	public String version = " b1.4";
 	public static boolean BETA;
 	public static system INSTANCE;
 	public boolean guiInitialized;

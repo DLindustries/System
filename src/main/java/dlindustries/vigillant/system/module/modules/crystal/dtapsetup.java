@@ -22,7 +22,7 @@ import org.lwjgl.glfw.GLFW;
 public final class dtapsetup extends Module implements TickListener, ItemUseListener, AttackListener {
 	private final KeybindSetting activateKey = new KeybindSetting(EncryptedString.of("Activate Key"), GLFW.GLFW_MOUSE_BUTTON_RIGHT, false)
 			.setDescription(EncryptedString.of("bind to your crystal keybind - make sure you attempt to place obi to reduce flags"));
-	private final BooleanSetting checkPlace = new BooleanSetting(EncryptedString.of("Check Place"), false)
+	private final BooleanSetting checkPlace = new BooleanSetting(EncryptedString.of("Check Place"), true)
 			.setDescription(EncryptedString.of("Checks if you can place the obsidian on that block"));
 	private final NumberSetting switchDelay = new NumberSetting(EncryptedString.of("Switch Delay"), 0, 20, 0, 1);
 	private final NumberSetting switchChance = new NumberSetting(EncryptedString.of("Switch Chance"), 0, 100, 100, 1);

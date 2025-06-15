@@ -216,6 +216,21 @@ public final class KeyUtils {
 			case GLFW.GLFW_MOUSE_BUTTON_RIGHT -> {
 				return EncryptedString.of("RMB");
 			}
+			case GLFW.GLFW_MOUSE_BUTTON_4 -> {
+				return EncryptedString.of("Mouse 4");
+			}
+			case GLFW.GLFW_MOUSE_BUTTON_5 -> {
+				return EncryptedString.of("Mouse 5");
+			}
+			case GLFW.GLFW_MOUSE_BUTTON_6 -> {
+				return EncryptedString.of("Mouse 6");
+			}
+			case GLFW.GLFW_MOUSE_BUTTON_7 -> {
+				return EncryptedString.of("Mouse 7");
+			}
+			case GLFW.GLFW_MOUSE_BUTTON_8 -> {
+				return EncryptedString.of("Mouse 8");
+			}
 			default -> {
 				String keyName = GLFW.glfwGetKeyName(key, 0);
 				if (keyName == null) return EncryptedString.of("None");

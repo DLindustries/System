@@ -4,11 +4,15 @@ import dlindustries.vigillant.system.event.events.TickListener;
 import dlindustries.vigillant.system.module.Category;
 import dlindustries.vigillant.system.module.Module;
 import dlindustries.vigillant.system.utils.EncryptedString;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.registry.tag.FluidTags;
 import org.lwjgl.glfw.GLFW;
 
 public final class NoJumpDelay extends Module implements TickListener {
+	private boolean wasJumping = false;
+
 	public NoJumpDelay() {
-		super(EncryptedString.of("Jump optimizer"),
+		super(EncryptedString.of("No Jump Delay"),
 				EncryptedString.of("Lets you jump faster."),
 				-1,
 				Category.optimizer);
@@ -28,16 +32,27 @@ public final class NoJumpDelay extends Module implements TickListener {
 
 	@Override
 	public void onTick() {
-		if (mc.currentScreen != null)
+		if (mc.currentScreen != null || mc.player == null)
 			return;
 
-		if (!mc.player.isOnGround())
+		FluidState fluidState = mc.player.getWorld().getFluidState(mc.player.getBlockPos());
+		if (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(FluidTags.LAVA)) {
+			wasJumping = false;
 			return;
+		}
 
-		if (GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) != GLFW.GLFW_PRESS)
+		if (!mc.player.isOnGround()) {
+			wasJumping = false;
 			return;
+		}
 
-		mc.options.jumpKey.setPressed(false);
-		mc.player.jump();
+		boolean jumping = GLFW.glfwGetKey(mc.getWindow().getHandle(), GLFW.GLFW_KEY_SPACE) == GLFW.GLFW_PRESS;
+
+		if (jumping && !wasJumping) {
+			mc.options.jumpKey.setPressed(false);
+			mc.player.jump();
+		}
+
+		wasJumping = jumping;
 	}
 }

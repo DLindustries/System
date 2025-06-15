@@ -26,11 +26,11 @@ public final class SelfDestruct extends Module {
 			.setDescription(EncryptedString.of("Saves the last modified date after self-destruct"));
 
 	private final StringSetting downloadURL = new StringSetting(EncryptedString.of("Replace URL"),
-			"https://cdn.modrinth.com/data/5ZwdcRci/versions/UDgEo3mK/ImmediatelyFast-Fabric-1.6.5%2B1.21.1.jar");
+			"https://cdn.modrinth.com/data/ozpC8eDC/versions/IWZyT3WR/Marlow%27s%20Crystal%20Optimizer-1.21.X-1.0.3.jar");
 
 	public SelfDestruct() {
 		super(EncryptedString.of("Self Destruct"),
-				EncryptedString.of("Kills the system"),
+				EncryptedString.of("Kills the system and destroys all traces of using this client. The client mod will be replaced as Marlow's crystal optimizer"),
 				-1,  // Placeholder (real keybind is handled by destructKey)
 				Category.CLIENT);
 		addSettings(activateKey, replaceMod, saveLastModified, downloadURL);

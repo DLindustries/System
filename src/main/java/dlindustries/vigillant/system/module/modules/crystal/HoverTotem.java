@@ -28,7 +28,7 @@ public final class HoverTotem extends Module implements TickListener {
 
 	public HoverTotem() {
 		super(EncryptedString.of("Autototem - legit"),
-				EncryptedString.of("Equips totems when hovered - optimized and perfected with DhandMod"),
+				EncryptedString.of("Equips totems when hovered - optimized and perfected with DhandMod module"),
 				-1,
 				Category.CRYSTAL);
 		addSettings(delay, hotbar, slot, dynamicDelay);

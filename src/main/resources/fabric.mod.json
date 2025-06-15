@@ -1,14 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "system",
-  "version": "1.2.11+1.21",
-  "name": "system",
-  "description": "Speed up and optimize crystal pvp gameplay using legitimate optimizers",
+  "id": "marlows-crystal-optimizer",
+  "version": "1.0.3",
+  "name": "Marlow's Crystal Optimizer",
+  "description": "Optimization that fixes waiting on the server after crystal break before end crystal entities are cleaned.",
   "authors": [
-    "DL_industries"
+    "Bram",
+    "Marlow"
   ],
   "contact": {
-    "discord": "https://discord.gg/yynpznJVkC"
+    "homepage": "https://modrinth.com/mod/marlow-crystal-optimizer",
+    "issues": "https://github.com/Bram1903/MarlowsCrystalOptimizer/issues",
+    "sources": "https://github.com/Bram1903/MarlowsCrystalOptimizer"
   },
   "license": "LGPL-3.0",
   "icon": "assets/system/icon.png",

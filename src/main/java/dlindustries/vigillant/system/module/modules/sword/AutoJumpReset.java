@@ -60,4 +60,3 @@ public final class AutoJumpReset extends Module implements TickListener {
 		}
 	}
 }
-

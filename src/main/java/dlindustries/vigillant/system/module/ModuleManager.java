@@ -47,6 +47,7 @@ public final class ModuleManager implements ButtonListener {
 		add(new AutoInventoryTotem());
 		add(new TotemOffhand());
 		add(new KeyPearl());
+		add(new DhandMod());
 
 		//optimizer
 		add(new Prevent());
@@ -109,11 +110,16 @@ public final class ModuleManager implements ButtonListener {
 
 	@Override
 	public void onButtonPress(ButtonEvent event) {
-		if(!SelfDestruct.destruct) {
-			modules.forEach(module -> {
-				if(module.getKey() == event.button && event.action == GLFW.GLFW_PRESS)
-					module.toggle();
-			});
+		if (event.button >= 179 && event.button <= 183 ||
+				event.button == GLFW.GLFW_KEY_UNKNOWN ||
+				SelfDestruct.destruct) {
+			return;
 		}
+
+		modules.forEach(module -> {
+			if (module.getKey() == event.button && event.action == GLFW.GLFW_PRESS) {
+				module.toggle();
+			}
+		});
 	}
 }

@@ -30,7 +30,8 @@
     "OtherClientPlayerEntityAccessor",
     "ScreenMixin",
     "ShaderProgramAccessor",
-    "WorldRendererAccessor"
+    "WorldRendererAccessor",
+    "InventorySwitchMixin"
   ],
   "injectors": {
     "defaultRequire": 1

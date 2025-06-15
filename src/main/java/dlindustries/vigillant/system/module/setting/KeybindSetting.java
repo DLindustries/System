@@ -1,5 +1,8 @@
 package dlindustries.vigillant.system.module.setting;
 
+import net.minecraft.client.MinecraftClient;
+import org.lwjgl.glfw.GLFW;
+
 public final class KeybindSetting extends Setting<KeybindSetting> {
 	private int keyCode;
 	private boolean listening;
@@ -34,10 +37,29 @@ public final class KeybindSetting extends Setting<KeybindSetting> {
 	}
 
 	public void setKey(int key) {
-		this.keyCode = key;
+		// Prevent setting media keys
+		if (!isMediaKey(key)) {
+			this.keyCode = key;
+		}
 	}
 
-    public void toggleListening() {
+	public void toggleListening() {
 		this.listening = !listening;
+	}
+
+	public boolean isPressed() {
+		// Ignore media keys and invalid keys
+		if (isMediaKey(keyCode) || keyCode == GLFW.GLFW_KEY_UNKNOWN) {
+			return false;
+		}
+		return GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), keyCode) == GLFW.GLFW_PRESS;
+	}
+
+	private boolean isMediaKey(int key) {
+		return key >= 179 && key <= 183;
+	}
+
+	public boolean shouldIgnoreKey(int key) {
+		return isMediaKey(key) || key == GLFW.GLFW_KEY_UNKNOWN;
 	}
 }
