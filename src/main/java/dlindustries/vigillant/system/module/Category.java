@@ -9,8 +9,6 @@ public enum Category {
 	mace(EncryptedString.of("Mace")),
 	optimizer(EncryptedString.of("Optimizer")),
 	RENDER(EncryptedString.of("Render")),
-	Donut(EncryptedString.of("Donut SMP")),
-
 	CLIENT(EncryptedString.of("Client"));
 	public final CharSequence name;
 
