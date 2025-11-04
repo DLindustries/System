@@ -1,0 +1,45 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dlindustries.vigillant.system.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ClientConnectionMixin",
+    "EndCrystalItemMixin",
+    "ItemStackMixin",
+    "LivingEntityAccessor",
+    "WorldAccessor"
+  ],
+  "client": [
+    "BufferRendererAccessor",
+    "CameraMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerAccessor",
+    "ClientPlayerInteractionManagerMixin",
+    "FrustumAccessor",
+    "GameRendererMixin",
+    "HandledScreenMixin",
+    "InGameHudMixin",
+    "KeyBindingAccessor",
+    "KeyBindingMixin",
+    "KeyboardMixin",
+    "MinecraftClientAccessor",
+    "MinecraftClientMixin",
+    "MouseHandlerAccessor",
+    "MouseMixin",
+    "OtherClientPlayerEntityAccessor",
+    "ScreenMixin",
+    "ShaderProgramAccessor",
+    "WorldRendererAccessor",
+    "InventorySwitchMixin",
+    "EntityRendererMixin",
+    "LivingEntityRendererMixin",
+    "ClientWorldMixin",
+    "LivingEntityMixin",
+    "TextVisitFactoryMixin"
+
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
