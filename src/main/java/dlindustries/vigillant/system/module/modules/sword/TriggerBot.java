@@ -14,6 +14,7 @@ import dlindustries.vigillant.system.utils.TimerUtils;
 import dlindustries.vigillant.system.utils.WorldUtils;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.decoration.EndCrystalEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -298,7 +299,7 @@ public final class TriggerBot extends Module implements TickListener, AttackList
 
     private boolean isValidEntity(Entity entity) {
         return entity instanceof PlayerEntity ||
-                (strayBypass.getValue() && entity instanceof ZombieEntity) ||
+                (strayBypass.getValue() && entity instanceof ZombieEntity ) ||
                 (allEntities.getValue() && entity != null);
     }
 

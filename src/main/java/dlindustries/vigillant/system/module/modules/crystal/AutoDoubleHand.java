@@ -64,9 +64,9 @@ public final class AutoDoubleHand extends Module implements HudListener {
 			.setDescription(EncryptedString.of("Checks if the opponent is holding crystals"));
 	private final NumberSetting activatesAbove = new NumberSetting(EncryptedString.of("Activates Above"), 0, 4, 0.2, 0.1)
 			.setDescription(EncryptedString.of("Height to trigger at"));
-	private final BooleanSetting reduceStrictness = new BooleanSetting(EncryptedString.of("Reduce Strictness"), false)
+	private final BooleanSetting reduceStrictness = new BooleanSetting(EncryptedString.of("Reduce Strictness"), true)
 			.setDescription(EncryptedString.of("Pause totem switch during elytra flight activation - still forces double hand if you do not have a offhand totem for safety"));
-	private final BooleanSetting includeAnchor = new BooleanSetting(EncryptedString.of("Include Anchor"), false)
+	private final BooleanSetting includeAnchor = new BooleanSetting(EncryptedString.of("Include Anchor"), true)
 			.setDescription(EncryptedString.of("Detect fatal charged anchors"));
 	private final ModeSetting<AnchorMode> anchorMode = new ModeSetting<>(
 			EncryptedString.of("Anchor Mode"),
@@ -104,17 +104,15 @@ public final class AutoDoubleHand extends Module implements HudListener {
 	@SuppressWarnings("all")
 	@Override
 	public void onRenderHud(HudEvent event) {
-		if (mc.player == null)
-			return;
-
+		if (mc.player == null) return;
 		if (system.INSTANCE.getModuleManager().getModule(AutoCrystal.class).crystalling && stopOnCrystal.getValue())
 			return;
-
 		if (reduceStrictness.getValue() && isElytraEquipped()) {
 			if (hasTotemInOffhand()) {
 				return;
 			} else {
-				mc.player.getInventory().selectedSlot = 8;
+				int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
+				mc.player.getInventory().selectedSlot = totemSlot;
 				return;
 			}
 		}
@@ -122,57 +120,49 @@ public final class AutoDoubleHand extends Module implements HudListener {
 		double squaredDistance = distance.getValue() * distance.getValue();
 		PlayerInventory inventory = mc.player.getInventory();
 
-		if (checkShield.getValue() && mc.player.isBlocking())
-			return;
+		if (checkShield.getValue() && mc.player.isBlocking()) return;
 
 		if (inventory.offHand.get(0).getItem() != Items.TOTEM_OF_UNDYING && onPop.getValue() && !offhandHasNoTotem) {
 			offhandHasNoTotem = true;
-			mc.player.getInventory().selectedSlot = 8;
+			int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
+			mc.player.getInventory().selectedSlot = totemSlot;
 		}
 
-		if (inventory.offHand.get(0).getItem() == Items.TOTEM_OF_UNDYING)
-			offhandHasNoTotem = false;
+
+		if (inventory.offHand.get(0).getItem() == Items.TOTEM_OF_UNDYING) offhandHasNoTotem = false;
 
 		if (mc.player.getHealth() <= health.getValue() && onHealth.getValue() && !belowHealth) {
 			belowHealth = true;
-			mc.player.getInventory().selectedSlot = 8;
+			int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
+			if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
+
 		}
 
-		if (mc.player.getHealth() > health.getValue())
-			belowHealth = false;
+		if (mc.player.getHealth() > health.getValue()) belowHealth = false;
 
-		if (!predict.getValue())
-			return;
-
-		if (mc.player.getHealth() > 19)
-			return;
-
-		if (!onGround.getValue() && mc.player.isOnGround())
-			return;
-
-		if (checkPlayers.getValue() && mc.world.getPlayers().parallelStream().filter(e -> e != mc.player).noneMatch(p -> mc.player.squaredDistanceTo(p) <= squaredDistance))
-			return;
+		if (!predict.getValue()) return;
 		if (includeAnchor.getValue()) {
 			List<BlockPos> chargedAnchors = BlockUtils.getAllInBoxStream(
 							mc.player.getBlockPos().add(-6, -6, -6),
 							mc.player.getBlockPos().add(6, 6, 6))
-					.filter(pos -> mc.world.getBlockState(pos).getBlock() == Blocks.RESPAWN_ANCHOR)
-					.filter(pos -> mc.world.getBlockState(pos).get(RespawnAnchorBlock.CHARGES) > 0)
+					.filter(pos -> {
+						var state = mc.world.getBlockState(pos);
+						return state.getBlock() == Blocks.RESPAWN_ANCHOR && state.get(RespawnAnchorBlock.CHARGES) > 0;
+					})
 					.toList();
 
 			for (BlockPos anchorPos : chargedAnchors) {
 				Vec3d anchorVec = Vec3d.ofCenter(anchorPos);
 				float damage = DamageUtils.anchorDamage(mc.player, anchorVec);
-
 				if (damage >= mc.player.getHealth() + mc.player.getAbsorptionAmount()) {
+					int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
 					switch (anchorMode.getMode()) {
 						case ALWAYS:
-							mc.player.getInventory().selectedSlot = 8;
+							if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
 							return;
-
 						case CRITICAL:
 							if (mc.player.getInventory().offHand.get(0).getItem() != Items.TOTEM_OF_UNDYING) {
-								mc.player.getInventory().selectedSlot = 8;
+								if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
 								return;
 							}
 							break;
@@ -180,6 +170,15 @@ public final class AutoDoubleHand extends Module implements HudListener {
 				}
 			}
 		}
+		if (mc.player.getHealth() > 19) return;
+		if (!onGround.getValue() && mc.player.isOnGround()) return;
+		if (checkPlayers.getValue()) {
+			boolean anyNearby = mc.world.getPlayers().stream()
+					.filter(e -> e != mc.player)
+					.anyMatch(p -> mc.player.squaredDistanceTo(p) <= squaredDistance);
+			if (!anyNearby) return;
+		}
+		if (mc.player.getHealth() > 19) return; // optional duplicate from original; can be removed if desired
 		double above = activatesAbove.getValue();
 		for (int floor = (int) Math.floor(above), i = 1; i <= floor; i++) {
 			if (!mc.world.getBlockState(mc.player.getBlockPos().add(0, -i, 0)).isAir())
@@ -206,19 +205,30 @@ public final class AutoDoubleHand extends Module implements HudListener {
 				else
 					s = s.filter(this::arePeopleAimingAtBlock);
 			}
-			s.forEachOrdered(e ->
-					crystalPositions.add(Vec3d.ofBottomCenter(e).add(0, 1, 0))
-			);
+			s.forEachOrdered(e -> crystalPositions.add(Vec3d.ofBottomCenter(e).add(0, 1, 0)));
 		}
 
 		for (Vec3d crys : crystalPositions) {
+			if (Math.abs(mc.player.getY() - crys.y) > 3.0) continue;
+
 			double damage = DamageUtils.crystalDamage(mc.player, crys);
 			if (damage >= mc.player.getHealth() + mc.player.getAbsorptionAmount()) {
-				mc.player.getInventory().selectedSlot = 8;
+				int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
+				if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
 				break;
 			}
 		}
 	}
+
+
+	private int findItemInHotbar(net.minecraft.item.Item item) {
+		if (mc.player == null) return -1;
+		for (int i = 0; i < 9; i++) {
+			if (mc.player.getInventory().getStack(i).getItem() == item) return i;
+		}
+		return -1;
+	}
+
 
 
 	private boolean isElytraEquipped() {
