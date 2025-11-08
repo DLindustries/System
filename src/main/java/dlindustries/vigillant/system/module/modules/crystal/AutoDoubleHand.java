@@ -7,7 +7,13 @@ import dlindustries.vigillant.system.module.setting.BooleanSetting;
 import dlindustries.vigillant.system.module.setting.ModeSetting;
 import dlindustries.vigillant.system.module.setting.NumberSetting;
 import dlindustries.vigillant.system.system;
-import dlindustries.vigillant.system.utils.*;
+import dlindustries.vigillant.system.utils.BlockUtils;
+import dlindustries.vigillant.system.utils.EncryptedString;
+
+import dlindustries.vigillant.system.utils.DamageUtils;
+
+import dlindustries.vigillant.system.utils.CrystalUtils;
+import dlindustries.vigillant.system.utils.RotationUtils;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RespawnAnchorBlock;
 import net.minecraft.entity.decoration.EndCrystalEntity;
@@ -178,7 +184,7 @@ public final class AutoDoubleHand extends Module implements HudListener {
 					.anyMatch(p -> mc.player.squaredDistanceTo(p) <= squaredDistance);
 			if (!anyNearby) return;
 		}
-		if (mc.player.getHealth() > 19) return; // optional duplicate from original; can be removed if desired
+		if (mc.player.getHealth() > 19) return;
 		double above = activatesAbove.getValue();
 		for (int floor = (int) Math.floor(above), i = 1; i <= floor; i++) {
 			if (!mc.world.getBlockState(mc.player.getBlockPos().add(0, -i, 0)).isAir())

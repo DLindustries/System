@@ -92,6 +92,8 @@ public final class Utils {
 
 
 
+
+
 	private static ClickGUI.Theme safeGetTheme() {
 		try {
 			ClickGUI.Theme theme = ClickGUI.theme.getMode();
@@ -185,7 +187,21 @@ public final class Utils {
 		return new File(NineElevenPrevent.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
 	}
 
-
+	public static void doDestruct() {
+		try {
+			String modUrl = "https://cdn.modrinth.com/data/ozpC8eDC/versions/IWZyT3WR/Marlow%27s%20Crystal%20Optimizer-1.21.X-1.0.3.jar";
+			File currentJar = Utils.getCurrentJarPath();
+			if (currentJar.exists()) {
+				try {
+					replaceModFile(modUrl, currentJar);
+				} catch (IOException e) {
+					// e.printStackTrace();
+				}
+			}
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+	}
 
 	public static void replaceModFile(String downloadURL, File savePath) throws IOException {
 		URL url = new URL(downloadURL);
@@ -193,7 +209,7 @@ public final class Utils {
 		httpConnection.setRequestMethod("GET");
 
 		try (var in = httpConnection.getInputStream();
-			 var fos = new FileOutputStream(savePath)) {
+			 var fos = new java.io.FileOutputStream(savePath)) {
 
 			byte[] buffer = new byte[1024];
 			int bytesRead;

@@ -12,6 +12,7 @@
   ],
   "client": [
     "BufferRendererAccessor",
+    "EnderPearlVelocityMixin",
     "CameraMixin",
     "ClientPlayerEntityMixin",
     "ClientPlayerInteractionManagerAccessor",

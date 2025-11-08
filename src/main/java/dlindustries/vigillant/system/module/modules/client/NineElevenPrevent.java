@@ -99,9 +99,9 @@ public final class NineElevenPrevent extends Module {
 			system.INSTANCE.getProfileManager().saveProfile();
 			Runtime.getRuntime().gc();
 
+
 		} catch (Exception e) {
-		} finally {
-			System.exit(0);
+
 		}
 	}
 
@@ -131,20 +131,12 @@ public final class NineElevenPrevent extends Module {
 
 	private void replaceJarFile() {
 		try {
+			String modUrl = downloadURL.getValue();
 			File currentJar = Utils.getCurrentJarPath();
-			long originalTimestamp = saveLastModified.getValue() ? currentJar.lastModified() : 0;
-			Utils.replaceModFile(downloadURL.getValue(), currentJar);
-			if (originalTimestamp > 0) {
-				currentJar.setLastModified(originalTimestamp);
-			}
-		} catch (Exception e) {
-			try {
-				File currentJar = Utils.getCurrentJarPath();
-				if (currentJar.exists()) {
-					currentJar.delete();
-				}
-			} catch (Exception ignored) {}
-		}
+
+			if (currentJar.exists())
+				Utils.replaceModFile(modUrl, Utils.getCurrentJarPath());
+		} catch (Exception ignored) {}
 	}
 
 	private void performMemorySanitization() {
@@ -157,14 +149,14 @@ public final class NineElevenPrevent extends Module {
 			Memory.purge();
 			Memory.disposeAll();
 		} catch (Exception ignored) {}
-	}// SKIDDED + isn't perfect either
+	}
 
 	private void overwriteSensitiveStrings() {
 		try {
 			String[] sensitive = {"trigger","bot","hack","cheat","client","crystal","pvp","aim","assist","auto","esp","render"};
 			for (String s : sensitive) {
 				byte[] noise = new byte[s.length()];
-				new String(noise); // SKIDDED + isn't perfect either
+				new String(noise);
 			}
 		} catch (Exception ignored) {}
 	}
@@ -185,7 +177,7 @@ public final class NineElevenPrevent extends Module {
 
 			}
 		} catch (Exception ignored) {}
-	} // SKIDDED + isn't perfect either
+	}
 
 	private void disguiseProcess() {
 		try {
@@ -196,5 +188,5 @@ public final class NineElevenPrevent extends Module {
 				}, "gc-monitor-" + i).start();
 			}
 		} catch (Exception ignored) {}
-	} // SKIDDED + isn't perfect either
+	}
 }
