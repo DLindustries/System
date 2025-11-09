@@ -116,10 +116,6 @@ public final class AutoDoubleHand extends Module implements HudListener {
 		if (reduceStrictness.getValue() && isElytraEquipped()) {
 			if (hasTotemInOffhand()) {
 				return;
-			} else {
-				int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
-				mc.player.getInventory().selectedSlot = totemSlot;
-				return;
 			}
 		}
 
@@ -127,25 +123,20 @@ public final class AutoDoubleHand extends Module implements HudListener {
 		PlayerInventory inventory = mc.player.getInventory();
 
 		if (checkShield.getValue() && mc.player.isBlocking()) return;
-
 		if (inventory.offHand.get(0).getItem() != Items.TOTEM_OF_UNDYING && onPop.getValue() && !offhandHasNoTotem) {
 			offhandHasNoTotem = true;
 			int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
-			mc.player.getInventory().selectedSlot = totemSlot;
+			safeSelectSlot(totemSlot);
 		}
 
-
 		if (inventory.offHand.get(0).getItem() == Items.TOTEM_OF_UNDYING) offhandHasNoTotem = false;
-
 		if (mc.player.getHealth() <= health.getValue() && onHealth.getValue() && !belowHealth) {
 			belowHealth = true;
 			int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
-			if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
-
+			safeSelectSlot(totemSlot);
 		}
 
 		if (mc.player.getHealth() > health.getValue()) belowHealth = false;
-
 		if (!predict.getValue()) return;
 		if (includeAnchor.getValue()) {
 			List<BlockPos> chargedAnchors = BlockUtils.getAllInBoxStream(
@@ -164,11 +155,11 @@ public final class AutoDoubleHand extends Module implements HudListener {
 					int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
 					switch (anchorMode.getMode()) {
 						case ALWAYS:
-							if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
+							safeSelectSlot(totemSlot);
 							return;
 						case CRITICAL:
 							if (mc.player.getInventory().offHand.get(0).getItem() != Items.TOTEM_OF_UNDYING) {
-								if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
+								safeSelectSlot(totemSlot);
 								return;
 							}
 							break;
@@ -213,14 +204,13 @@ public final class AutoDoubleHand extends Module implements HudListener {
 			}
 			s.forEachOrdered(e -> crystalPositions.add(Vec3d.ofBottomCenter(e).add(0, 1, 0)));
 		}
-
 		for (Vec3d crys : crystalPositions) {
 			if (Math.abs(mc.player.getY() - crys.y) > 3.0) continue;
 
 			double damage = DamageUtils.crystalDamage(mc.player, crys);
 			if (damage >= mc.player.getHealth() + mc.player.getAbsorptionAmount()) {
 				int totemSlot = findItemInHotbar(Items.TOTEM_OF_UNDYING);
-				if (totemSlot != -1) mc.player.getInventory().selectedSlot = totemSlot;
+				safeSelectSlot(totemSlot);
 				break;
 			}
 		}
@@ -236,6 +226,12 @@ public final class AutoDoubleHand extends Module implements HudListener {
 	}
 
 
+	private void safeSelectSlot(int slot) {
+		if (mc.player == null) return;
+		if (slot >= 0 && slot <= 8) {
+			mc.player.getInventory().selectedSlot = slot;
+		}
+	}
 
 	private boolean isElytraEquipped() {
 		return mc.player.getInventory().getArmorStack(2).getItem() == Items.ELYTRA;

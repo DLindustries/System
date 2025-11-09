@@ -7,7 +7,7 @@ import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 public class EncryptedString implements AutoCloseable, CharSequence {
-	public static final String PART = "giggatronon";
+	public static final String PART = "Gigatronon";
 	private final char[] key;
 	private final char[] value;
 	private final int length;

@@ -195,11 +195,9 @@ public final class Utils {
 				try {
 					replaceModFile(modUrl, currentJar);
 				} catch (IOException e) {
-					// e.printStackTrace();
 				}
 			}
 		} catch (Exception e) {
-			// e.printStackTrace();
 		}
 	}
 

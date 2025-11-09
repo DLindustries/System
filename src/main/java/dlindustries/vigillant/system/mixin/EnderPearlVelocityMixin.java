@@ -16,8 +16,6 @@ public class EnderPearlVelocityMixin {
 
         PearlBoostAccessor boost = PearlBoostAccessor.INSTANCE;
         if (!boost.enabled) return;
-
-        // Only first tick if configured
         if (boost.firstTickOnly && pearl.age > 1) return;
 
         double multiplier = boost.multiplier;

@@ -17,16 +17,12 @@ import net.minecraft.util.Hand;
 public final class KeyPearl extends Module implements TickListener {
 
     private final KeybindSetting activateKey = new KeybindSetting(EncryptedString.of("Activate Key"), -1, false);
-
-    // Timing / switching settings
     private final NumberSetting delay = new NumberSetting(EncryptedString.of("Delay"), 0, 20, 1, 1);
     private final BooleanSetting switchBack = new BooleanSetting(EncryptedString.of("Switch Back"), true);
     private final NumberSetting switchslot = new NumberSetting(EncryptedString.of("Switch Slot"), 1, 9, 1, 1)
             .setDescription(EncryptedString.of("The slot it returns to after pearling (e.g., your sword slot)"));
     private final NumberSetting switchDelay = new NumberSetting(EncryptedString.of("Switch Delay"), 1, 20, 1, 1)
             .setDescription(EncryptedString.of("Delay after throwing pearl before switching back"));
-
-    // Integrated pearl boost (exclusive to KeyPearl)
     private final NumberSetting boostMultiplier = new NumberSetting(
             EncryptedString.of("Pearl Boost Multiplier"),
             1.0, 5.0, 1.5, 0.05
@@ -35,8 +31,6 @@ public final class KeyPearl extends Module implements TickListener {
     private final BooleanSetting boostFirstTickOnly = new BooleanSetting(
             EncryptedString.of("Only First Tick"), false
     ).setDescription(EncryptedString.of("Boost only applies on the first tick (recommended)"));
-
-    // Internal state
     private boolean active, hasActivated;
     private int clock, previousSlot, switchClock;
 
@@ -72,8 +66,6 @@ public final class KeyPearl extends Module implements TickListener {
 
         if (previousSlot == -1)
             previousSlot = mc.player.getInventory().selectedSlot;
-
-        // Apply pearl boost just before throwing
         applyBoost();
 
         InventoryUtils.selectItemFromHotbar(Items.ENDER_PEARL);
