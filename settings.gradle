@@ -1,13 +1,13 @@
 pluginManagement {
     repositories {
-        maven { url = "https://maven.fabricmc.net/" } # Adds the official Fabric mirror
+        maven { url = "https://maven.fabricmc.net/" } // Adds the official Fabric mirror
         gradlePluginPortal()
         mavenCentral()
     }
 }
 
 plugins {
-    id "net.fabricmc.fabric-loom-remap" version "1.10.0" # Stabilizes the layout version
+    id "net.fabricmc.fabric-loom" version "1.10.0"
 }
 
 rootProject.name = 'system'
