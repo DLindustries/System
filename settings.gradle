@@ -1,5 +1,5 @@
 pluginManagement {
     plugins {
-        id 'fabric-loom' version '1.6.12' // Or another old version
+        id 'fabric-loom' version '1.10.0' // Or another old version
     }
 }
