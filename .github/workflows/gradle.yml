@@ -7,22 +7,40 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch: 
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
+      # Checkout the code WITHOUT submodules
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 
+        with:
+          submodules: false
+
+      # Remove ALL submodule references from git config and disk
+      - name: Remove submodule references
+        run: |
+          # Remove from git config
+          git config --file .git/config --remove-section submodule.System || true
+          
+          # Remove .git/modules directory for the submodule
+          rm -rf .git/modules/System || true
+          
+          # Remove the submodule directory if it exists
+          rm -rf System || true
+          
+          # Remove .gitmodules file
+          rm -f .gitmodules
 
       # Set up JDK 21 using Temurin
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4 
         with:
           java-version: '21'
-          distribution: 'temurin'  # Corrected distribution name
+          distribution: 'temurin' 
 
       # Ensure gradlew is executable
       - name: Make gradlew executable
@@ -30,7 +48,7 @@ jobs:
 
       # Cache Gradle dependencies
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4 
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
@@ -40,3 +58,10 @@ jobs:
       # Build with Gradle
       - name: Build with Gradle
         run: ./gradlew build
+
+      # Export Output Binaries
+      - name: Upload Finished Jar 
+        uses: actions/upload-artifact@v4
+        with:
+          name: GrassClient-Compiled-Jar
+          path: build/libs/*.jar

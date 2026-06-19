@@ -69,9 +69,9 @@ This fork is approximately **75% based on the original Argon**, but with focused
 ## How to use System
 
 1. Download the latest version of system (Jar file only)
-2. If you haven't already knew, you are required to download fabric api jar to be run alongside system, and use fabric loader for 1.21.1 or 1.21 to launch system. there are youtube tutorials for this
+2. If you haven't already knew, you are required to download fabric api jar to be run alongside system, and use fabric loader for 1.21.1 or 1.21.11 to launch system. there are youtube tutorials for this
 3. move the system jar into your minecraft mods folder.
-4. launch minecraft using fabric loader 1.21.1 or 1.21
+4. launch minecraft using fabric loader 1.21.1 or 1.21.11
 5. build a suitable configuration for the servers you are targeting to bypass - keep reading read.me for config guide
 6. Enjoy System!
 
