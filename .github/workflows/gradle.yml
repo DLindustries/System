@@ -16,7 +16,9 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v4 # changed: Upgraded checkout core to v4 for compatibility
+        uses: actions/checkout@v4
+        with:
+         submodules: 'recursive' # changed: Upgraded checkout core to v4 for compatibility
 
       # Set up JDK 21 using Temurin
       - name: Set up JDK 21
