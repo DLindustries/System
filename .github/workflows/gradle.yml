@@ -14,33 +14,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
+      # Checkout the code WITHOUT submodules
       - name: Checkout code
         uses: actions/checkout@v4 
         with:
           submodules: false
 
-      # Clean up broken submodule references
-      - name: Clean up broken submodules
+      # Remove ALL submodule references from git config and disk
+      - name: Remove submodule references
         run: |
-          git config --local --name-only --get-regexp '^submodule\.' | while read key; do
-            section=$(echo "$key" | sed 's/\..*//; s/submodule\.//')
-            git config --local --remove-section "submodule.$section" || true
-          done
+          # Remove from git config
+          git config --file .git/config --remove-section submodule.System || true
           
-          # Remove all submodule directories
-          if [ -f .gitmodules ]; then
-            git config --file .gitmodules --name-only --get-regexp path | while read path_key; do
-              path=$(git config --file .gitmodules --get "$path_key")
-              rm -rf "$path" || true
-              rm -rf ".git/modules/$path" || true
-            done
-          fi
+          # Remove .git/modules directory for the submodule
+          rm -rf .git/modules/System || true
           
-          # Clean up .gitmodules
-          rm -rf .gitmodules
-          git add .gitmodules || true
-          git reset HEAD .gitmodules || true
+          # Remove the submodule directory if it exists
+          rm -rf System || true
+          
+          # Remove .gitmodules file
+          rm -f .gitmodules
 
       # Set up JDK 21 using Temurin
       - name: Set up JDK 21
