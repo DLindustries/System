@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch: # changed: Added button on GitHub website to manually build anytime
 
 jobs:
   build:
@@ -15,14 +16,14 @@ jobs:
     steps:
       # Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # changed: Upgraded checkout core to v4 for compatibility
 
       # Set up JDK 21 using Temurin
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4 # changed: Upgraded Java action environment to v4
         with:
           java-version: '21'
-          distribution: 'temurin'  # Corrected distribution name
+          distribution: 'temurin' # Corrected distribution name
 
       # Ensure gradlew is executable
       - name: Make gradlew executable
@@ -30,7 +31,7 @@ jobs:
 
       # Cache Gradle dependencies
       - name: Cache Gradle dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v4 # changed: Upgraded automated caching core module to v4
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
@@ -40,3 +41,11 @@ jobs:
       # Build with Gradle
       - name: Build with Gradle
         run: ./gradlew build
+
+      # Export Output Binaries
+      - name: Upload Finished Jar # changed: Added this entire block to output your download link
+        uses: actions/upload-artifact@v4
+        with:
+          name: GrassClient-Compiled-Jar
+          path: build/libs/*.jar
+          
