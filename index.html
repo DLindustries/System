@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Client</title>
+    <meta name="description" content="The official github pages website for system client" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0c0b0f;
+            --bg-secondary: #131118;
+            --bg-card: #1a1722;
+            --bg-card-hover: #221e2d;
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            --border-glow: rgba(139, 92, 246, 0.15);
+            --text-primary: #eae6f5;
+            --text-secondary: #a8a0b8;
+            --text-muted: #6f6880;
+            --gradient-text: linear-gradient(135deg, #c4b5fd, #a78bfa, #8b5cf6);
+            --gradient-accent: linear-gradient(135deg, #a78bfa, #7c3aed);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b3450;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a4c7a;
+        }
+
+        /* ── Typography ── */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 640px;
+            margin: -1.5rem auto 2.5rem;
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .btn-discord {
+            background: #5865f2;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.3);
+        }
+        .btn-discord:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(88, 101, 242, 0.45);
+        }
+
+        .btn-github {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn-github:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .btn.large {
+            padding: 1rem 2.4rem;
+            font-size: 1.05rem;
+        }
+
+        /* ── Nav ── */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(12, 11, 15, 0.72);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 68px;
+        }
+
+        .nav-logo h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link .fa-github {
+            font-size: 1.1rem;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--text-secondary);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 5rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin-bottom: 1.5rem;
+        }
+
+        .closet-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.12);
+            border-radius: 50px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .closet-tagline i {
+            color: #a78bfa;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        .hero-stats .stat img {
+            height: 28px;
+            border-radius: 6px;
+        }
+
+        .hero-video {
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .video-wrapper:hover {
+            transform: scale(1.01);
+            border-color: rgba(139, 92, 246, 0.15);
+        }
+
+        .video-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .play-button {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        .play-button i {
+            font-size: 4rem;
+            color: #fff;
+            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.6));
+            transition: var(--transition);
+        }
+        .play-button:hover i {
+            transform: scale(1.1);
+            color: #c4b5fd;
+        }
+
+        /* ── GUI / Screenshots ── */
+        .gui {
+            padding: 4rem 0 5rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* ███  larger video container  ███ */
+        .gui video {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #000;
+            width: 100%;
+            max-width: 1024px;        /* was 820px → 25% bigger */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ── Feature Highlights (Kill clips) ── */
+        .highlights {
+            padding: 4rem 0 5rem;
+            background: var(--bg-primary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+        .highlight-card:hover {
+            border-color: rgba(139, 92, 246, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .highlight-card video {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: #0a0a0a;
+        }
+
+        .highlight-card .caption {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+
+        .highlight-card .caption h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-primary);
+        }
+
+        .highlight-card .caption p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.12);
+            color: #c4b5fd;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            margin-top: 0.2rem;
+        }
+
+        /* ── Download ── */
+        .download {
+            padding: 5rem 0;
+        }
+
+        .download-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: var(--shadow-card);
+        }
+
+        .download-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .download-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .requirements h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .requirements ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.2rem;
+        }
+        .requirements ul li {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .requirements ul li::before {
+            content: '◆';
+            color: #8b5cf6;
+            font-size: 0.5rem;
+        }
+
+        .download-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .download-buttons .btn {
+            justify-content: center;
+        }
+
+        /* ── Guide ── */
+        .guide {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .guide-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--bg-card);
+            padding: 1.5rem 1.5rem 1.5rem 1.2rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition);
+        }
+        .step:hover {
+            border-color: rgba(139, 92, 246, 0.12);
+            background: var(--bg-card-hover);
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .step-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            color: var(--text-primary);
+        }
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ── Community ── */
+        .community {
+            padding: 5rem 0;
+        }
+
+        .community-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 2.5rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2.5rem;
+        }
+
+        .community-text h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .community-text p {
+            color: var(--text-secondary);
+            max-width: 480px;
+        }
+
+        .community-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .discord-widget {
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .discord-widget img {
+            width: 100%;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            background: var(--bg-secondary);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: var(--text-primary);
+        }
+        .footer-section h3 {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .footer-section p,
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 0.3rem;
+        }
+        .footer-section ul li a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ── Modal ── */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal .close {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+        }
+        .modal .close:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-video {
+                order: -1;
+            }
+            .video-wrapper {
+                max-width: 100%;
+            }
+            .download-content {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+            .download-buttons {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            .highlights-grid {
+                grid-template-columns: 1fr;
+                max-width: 640px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: rgba(12, 11, 15, 0.96);
+                backdrop-filter: blur(16px);
+                padding: 1.5rem 2rem;
+                gap: 1.2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .community-content {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.8rem;
+            }
+            .community-links {
+                flex-direction: column;
+            }
+            .community-links .btn {
+                justify-content: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .guide-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .download-content {
+                padding: 1.5rem;
+            }
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats .stat img {
+                height: 22px;
+            }
+
+            .highlights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            .hero-buttons .btn {
+                justify-content: center;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .closet-tagline {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <h2>System Client</h2>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <a href="#download" class="nav-link">Download</a>
+            <a href="#guide" class="nav-link">Guide</a>
+            <a href="#community" class="nav-link">Community</a>
+            <a href="https://github.com/DLindustries/System" class="nav-link" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+        <div class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">System Client</h1>
+                <p class="hero-subtitle">The Ultimate Solution</p>
+                <p class="hero-description">
+                    Modern problems require modern solutions. System can prevent alot more flags
+                    compared to other 'Ghost clients' like Prestige Client while having more lethal innovative modules that looks perfectly legit.
+                </p>
+                <div class="closet-tagline">
+                    <i class="fas fa-eye-slash"></i>
+                    Designed specifically for closet cheating — this is not a blatant hvh client.
+                </div>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download Now
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=59nsohCazPo" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-play"></i> Watch Demo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <img src="https://img.shields.io/github/downloads/DLindustries/System/total?label=Downloads&style=flat-square&color=8a2be2" alt="Downloads" />
+                    </div>
+                    <div class="stat">
+                        <img src="https://img.shields.io/github/issues/DLindustries/System?style=flat-square&color=8a2be2" alt="Issues" />
+                    </div>
+                    <div class="stat">
+                        <img src="https://img.shields.io/badge/license-GPL--3.0-8a2be2?style=flat-square" alt="License" />
+                    </div>
+                </div>
+            </div>
+            <div class="hero-video">
+                <div class="video-wrapper" onclick="openVideo()">
+                    <img src="https://img.youtube.com/vi/59nsohCazPo/maxresdefault.jpg" alt="System Client Demo" />
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="gui">
+    <div class="container">
+        <h2 class="section-title">Screenshots</h2>
+        <p class="section-subtitle">A quick look at System's clean, intuitive interface.</p>
+        <video autoplay muted loop playsinline controls>
+            <source src="https://raw.githubusercontent.com/DLindustries/System/website/assets/gui.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+
+<section class="highlights">
+    <div class="container">
+        <h2 class="section-title">⚡ We provide modules for every scenario possible</h2>
+        <p class="section-subtitle">Here are two ways we pioneer in the frontier of mechanics development</p>
+
+        <div class="highlights-grid">
+          
+            <div class="highlight-card">
+                <video autoplay muted loop playsinline>
+                    <source src="https://raw.githubusercontent.com/DLindustries/System/website/assets/uf1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="caption">
+                    <h4>Unique Airplacer Anchor Macro hybrid</h4>
+                    <p>intuitively easy to use to switch between normal anchors and airplaces </p>
+                    <span class="highlight-badge">3.2s</span>
+                </div>
+            </div>
+
+
+            <div class="highlight-card">
+                <video autoplay muted loop playsinline>
+                    <source src="https://raw.githubusercontent.com/DLindustries/System/website/assets/uf2.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+                <div class="caption">
+                    <h4>Elytra Spear DTap Divebomb</h4>
+                    <p>Absolutely No Counterplay</p>
+                    <span class="highlight-badge">3.8s</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="download" class="download">
+    <div class="container">
+        <h2 class="section-title">Download System Client</h2>
+        <p class="section-subtitle">Completely free and open-source. Start dominating in modern Minecraft PvP.</p>
+        <div class="download-content">
+            <div class="download-info">
+                <h3>Get Started in Minutes</h3>
+                <p>System Client is free and open-source. Download the latest release and configure it for your target servers.</p>
+                <div class="requirements">
+                    <h4>Requirements</h4>
+                    <ul>
+                        <li>Minecraft 1.21 or 1.21.1</li>
+                        <li>Fabric Loader</li>
+                        <li>Fabric API</li>
+                        <li>High IQ — recommended</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="download-buttons">
+                <a href="https://github.com/DLindustries/System/releases/latest" class="btn btn-primary large" target="_blank">
+                    <i class="fas fa-download"></i> Download Latest Release
+                </a>
+                <a href="https://github.com/DLindustries/System" class="btn btn-secondary large" target="_blank">
+                    <i class="fab fa-github"></i> View the github repository - source code
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="guide" class="guide">
+    <div class="container">
+        <h2 class="section-title">Installation Guide</h2>
+        <p class="section-subtitle">Get System up and running in four simple steps.</p>
+        <div class="guide-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Download System Client</h3>
+                    <p>Get the latest JAR file from our GitHub releases page.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Install Fabric</h3>
+                    <p>Install Fabric Loader for Minecraft 1.21 / 1.21.1 and Fabric API.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Add to Mods Folder</h3>
+                    <p>Move the System JAR file into your Minecraft <code>mods</code> folder.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Launch &amp; Configure</h3>
+                    <p>Start Minecraft with Fabric Loader, press <kbd>Right Shift</kbd> to open the GUI and configure System for your target servers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="community" class="community">
+    <div class="container">
+        <h2 class="section-title">Join Our Community</h2>
+        <p class="section-subtitle">Get support, share configs, and stay updated.</p>
+        <div class="community-content">
+            <div class="community-text">
+                <h3>Get Support &amp; Share Configs</h3>
+                <p>Join our Discord for troubleshooting and updates. Connect with other System users and developers.</p>
+            </div>
+            <div class="community-links">
+                <a href="https://discord.gg/yynpznJVkC" class="btn btn-discord" target="_blank">
+                    <i class="fab fa-discord"></i> Join Discord Server
+                </a>
+                <a href="https://github.com/DLindustries/System/issues" class="btn btn-github" target="_blank">
+                    <i class="fab fa-github"></i> Report Issues
+                </a>
+            </div>
+        </div>
+        <div class="discord-widget">
+            <img src="https://invidget.switchblade.xyz/yynpznJVkC" alt="Discord Server" />
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>System Client</h3>
+                <p>Open-source Minecraft PvP client built for bypassing advanced anticheat solutions and providing all niches of mechanics used in highest level of crystal pvp</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="https://github.com/DLindustries/System">GitHub Repository</a></li>
+                    <li><a href="https://github.com/DLindustries/System/releases">Downloads</a></li>
+                    <li><a href="https://github.com/DLindustries/System/issues">Report Issues</a></li>
+                    <li><a href="https://discord.gg/yynpznJVkC">Discord Server</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>License</h4>
+                <p>Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-3.0</a></p>
+                <p>Free to use, modify, and distribute</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 System Client. Open-source project under GPL-3.0 license.</p>
+        </div>
+    </div>
+</footer>
+
+
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Screenshot" />
+    </div>
+</div>
+
+
+<script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+    });
+
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('open');
+        });
+    });
+
+    // Video modal
+    function openVideo() {
+        window.open('https://www.youtube.com/watch?v=59nsohCazPo', '_blank');
+    }
+
+    // Image modal (for future use)
+    function openModal(imgSrc) {
+        const modal = document.getElementById('imageModal');
+        const img = document.getElementById('modalImage');
+        img.src = imgSrc;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('imageModal').addEventListener('click', (e) => {
+        if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>
