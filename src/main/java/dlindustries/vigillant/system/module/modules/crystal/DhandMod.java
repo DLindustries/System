@@ -4,7 +4,7 @@ import dlindustries.vigillant.system.event.events.TickListener;
 import dlindustries.vigillant.system.module.Category;
 import dlindustries.vigillant.system.module.Module;
 import dlindustries.vigillant.system.module.setting.NumberSetting;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.EncryptedString;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
@@ -34,7 +34,7 @@ public final class DhandMod extends Module implements TickListener {
         }
     }
     public static void handleInventoryKey() {
-        DhandMod module = system.INSTANCE.getModuleManager().getModule(DhandMod.class);
+        DhandMod module = VigillantSystem.INSTANCE.getModuleManager().getModule(DhandMod.class);
         if (module == null || !module.isEnabled()) return;
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.player == null || client.currentScreen != null) return;

@@ -3,7 +3,7 @@ package dlindustries.vigillant.system.mixin;
 import dlindustries.vigillant.system.event.EventManager;
 import dlindustries.vigillant.system.event.events.GameRenderListener;
 import dlindustries.vigillant.system.module.modules.optimizer.CameraOptimizer;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.RenderTickCounter;
@@ -45,7 +45,7 @@ public abstract class GameRendererMixin {
 
 	@Inject(method = "shouldRenderBlockOutline", at = @At("HEAD"), cancellable = true)
 	private void onShouldRenderBlockOutline(CallbackInfoReturnable<Boolean> cir) {
-		CameraOptimizer optimizer = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+		CameraOptimizer optimizer = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
 		if (optimizer != null && optimizer.isEnabled() && optimizer.isToggleKeyPressed()) {
 			cir.setReturnValue(false);
 		}

@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.utils;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -21,7 +21,7 @@ import net.minecraft.world.chunk.WorldChunk;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class WorldUtils {
 	public static boolean isDeadBodyNearby() {
@@ -62,7 +62,7 @@ public final class WorldUtils {
 		for (PlayerEntity player : mc.world.getPlayers()) {
 			float distance = (float) distance(new Vec3d(toPlayer.getX(), toPlayer.getY(), toPlayer.getZ()), new Vec3d(player.getX(), player.getY(), player.getZ()));
 			if (player == toPlayer) continue;
-			if (excludeFriends && system.INSTANCE != null && system.INSTANCE.getFriendManager() != null && system.INSTANCE.getFriendManager().isFriend(player)) {
+			if (excludeFriends && VigillantSystem.INSTANCE != null && VigillantSystem.INSTANCE.getFriendManager() != null && VigillantSystem.INSTANCE.getFriendManager().isFriend(player)) {
 				continue;
 			}
 			if (distance <= range && toPlayer.canSee(player) == seeOnly) {

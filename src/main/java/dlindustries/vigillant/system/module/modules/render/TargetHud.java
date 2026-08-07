@@ -85,7 +85,7 @@ public final class TargetHud extends Module implements HudListener, PacketSendLi
 					0, 0, 0, 0, 10);
 
 			dlindustries.vigillant.system.module.modules.client.NameProtect nameProtect =
-					dlindustries.vigillant.system.system.INSTANCE.getModuleManager().getModule(
+					dlindustries.vigillant.system.VigillantSystem.INSTANCE.getModuleManager().getModule(
 							dlindustries.vigillant.system.module.modules.client.NameProtect.class);
 			String displayName = player.getName().getString();
 			if (nameProtect != null) displayName = nameProtect.replaceName(displayName);

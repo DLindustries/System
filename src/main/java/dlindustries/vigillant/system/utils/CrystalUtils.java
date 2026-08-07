@@ -8,7 +8,7 @@ import net.minecraft.util.math.Box;
 
 import java.util.List;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class CrystalUtils {
 	public static boolean canPlaceCrystalClient(BlockPos block) {

@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.mixin;
 
 import dlindustries.vigillant.system.module.modules.optimizer.ShieldOptimizer;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
@@ -19,7 +19,7 @@ public abstract class LivingEntityMixin {
 
     @Inject(method = "isBlocking", at = @At("RETURN"), cancellable = true)
     private void bypassShieldWarmup(CallbackInfoReturnable<Boolean> cir) {
-        ShieldOptimizer shieldOptimizer = system.INSTANCE.getModuleManager().getModule(ShieldOptimizer.class);
+        ShieldOptimizer shieldOptimizer = VigillantSystem.INSTANCE.getModuleManager().getModule(ShieldOptimizer.class);
         if (shieldOptimizer == null || !shieldOptimizer.isEnabled() || cir.getReturnValueZ()) {
             return;
         }

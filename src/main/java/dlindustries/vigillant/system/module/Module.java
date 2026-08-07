@@ -2,7 +2,7 @@ package dlindustries.vigillant.system.module;
 
 import dlindustries.vigillant.system.event.EventManager;
 import dlindustries.vigillant.system.module.setting.Setting;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.client.MinecraftClient;
 
 import java.io.Serializable;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public abstract class Module implements Serializable {
 	private final List<Setting<?>> settings = new ArrayList<>();
-	public final EventManager eventManager = system.INSTANCE.eventManager;
+	public final EventManager eventManager = VigillantSystem.INSTANCE.eventManager;
 	protected MinecraftClient mc = MinecraftClient.getInstance();
 	private CharSequence name;
 	private CharSequence description;

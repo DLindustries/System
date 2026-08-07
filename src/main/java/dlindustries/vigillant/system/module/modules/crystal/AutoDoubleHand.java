@@ -6,7 +6,7 @@ import dlindustries.vigillant.system.module.Module;
 import dlindustries.vigillant.system.module.setting.BooleanSetting;
 import dlindustries.vigillant.system.module.setting.ModeSetting;
 import dlindustries.vigillant.system.module.setting.NumberSetting;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.BlockUtils;
 import dlindustries.vigillant.system.utils.EncryptedString;
 
@@ -110,7 +110,7 @@ public final class AutoDoubleHand extends Module implements HudListener {
 	@Override
 	public void onRenderHud(HudEvent event) {
 		if (mc.player == null) return;
-		if (system.INSTANCE.getModuleManager().getModule(AutoCrystal.class).crystalling && stopOnCrystal.getValue())
+		if (VigillantSystem.INSTANCE.getModuleManager().getModule(AutoCrystal.class).crystalling && stopOnCrystal.getValue())
 			return;
 		if (reduceStrictness.getValue() && isElytraEquipped()) {
 			if (hasTotemInOffhand()) {

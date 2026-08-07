@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class RotationUtils {
 

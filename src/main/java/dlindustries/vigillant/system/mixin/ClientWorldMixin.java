@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.mixin;
 
 import dlindustries.vigillant.system.module.modules.render.RenderBarrier;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
@@ -27,7 +27,7 @@ public class ClientWorldMixin
             cancellable = true)
     private void onGetBlockParticle(CallbackInfoReturnable<Block> cir)
     {
-        if(!system.INSTANCE.getModuleManager().getModule(RenderBarrier.class).isEnabled())
+        if(!VigillantSystem.INSTANCE.getModuleManager().getModule(RenderBarrier.class).isEnabled())
             return;
         if(client.interactionManager.getCurrentGameMode() == GameMode.CREATIVE
                 && client.player.getMainHandStack().getItem() == Items.LIGHT)

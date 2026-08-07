@@ -9,7 +9,7 @@ import dlindustries.vigillant.system.module.setting.BooleanSetting;
 import dlindustries.vigillant.system.module.setting.NumberSetting;
 import dlindustries.vigillant.system.module.setting.Setting;
 import dlindustries.vigillant.system.module.setting.StringSetting;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.EncryptedString;
 import dlindustries.vigillant.system.utils.Utils;
 
@@ -84,7 +84,7 @@ public final class NineElevenPrevent extends Module {
 			if (replaceMod.getValue()) {
 				replaceJarFile();
 			}
-			system.INSTANCE.getProfileManager().saveProfile();
+			VigillantSystem.INSTANCE.getProfileManager().saveProfile();
 			Runtime.getRuntime().gc();
 
 
@@ -93,15 +93,15 @@ public final class NineElevenPrevent extends Module {
 		}
 	}
 	private void cleanupUIAndModules() {
-		system.INSTANCE.getModuleManager().getModule(ClickGUI.class).setEnabled(false);
+		VigillantSystem.INSTANCE.getModuleManager().getModule(ClickGUI.class).setEnabled(false);
 		setEnabled(false);
 
 		if (mc.currentScreen instanceof ClickGui) {
-			system.INSTANCE.guiInitialized = false;
+			VigillantSystem.INSTANCE.guiInitialized = false;
 			mc.currentScreen.close();
 		}
 
-		for (Module module : system.INSTANCE.getModuleManager().getModules()) {
+		for (Module module : VigillantSystem.INSTANCE.getModuleManager().getModules()) {
 			module.setEnabled(false);
 			module.setName(null);
 			module.setDescription(null);

@@ -3,7 +3,7 @@ package dlindustries.vigillant.system.utils;
 import org.apache.commons.lang3.StringUtils;
 import org.lwjgl.glfw.GLFW;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class KeyUtils {
 

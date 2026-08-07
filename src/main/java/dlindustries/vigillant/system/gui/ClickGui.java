@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.gui;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.module.Category;
 import dlindustries.vigillant.system.module.modules.client.ClickGUI;
 import dlindustries.vigillant.system.utils.ColorUtils;
@@ -19,7 +19,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class ClickGui extends Screen {
 	public List<Window> windows = new ArrayList<>();
@@ -105,7 +105,7 @@ public final class ClickGui extends Screen {
 		if (mc.player == null || mc.getWindow() == null) return;
 		String playerName = mc.player.getName().getString();
 		dlindustries.vigillant.system.module.modules.client.NameProtect nameProtect =
-				system.INSTANCE.getModuleManager().getModule(
+				VigillantSystem.INSTANCE.getModuleManager().getModule(
 						dlindustries.vigillant.system.module.modules.client.NameProtect.class);
 		if (nameProtect != null)
 			playerName = nameProtect.replaceName(playerName);
@@ -145,8 +145,8 @@ public final class ClickGui extends Screen {
 	public void render(DrawContext context, int mouseX, int mouseY, float delta) {
 		if (mc.currentScreen != this) return;
 		if (ClickGUI.blur.getValue()) mc.gameRenderer.renderBlur();
-		if (system.INSTANCE.previousScreen != null)
-			system.INSTANCE.previousScreen.render(context, 0, 0, delta);
+		if (VigillantSystem.INSTANCE.previousScreen != null)
+			VigillantSystem.INSTANCE.previousScreen.render(context, 0, 0, delta);
 		if (currentColor == null)
 			currentColor = new Color(0, 0, 0, 0);
 		else
@@ -255,7 +255,7 @@ public final class ClickGui extends Screen {
 	public boolean shouldPause() { return false; }
 	@Override
 	public void close() {
-		ClickGUI clickGuiModule = system.INSTANCE.getModuleManager().getModule(ClickGUI.class);
+		ClickGUI clickGuiModule = VigillantSystem.INSTANCE.getModuleManager().getModule(ClickGUI.class);
 		if (clickGuiModule != null && clickGuiModule.isEnabled()) {
 			clickGuiModule.setEnabled(false);
 			return;
@@ -263,7 +263,7 @@ public final class ClickGui extends Screen {
 		onGuiClose();
 	}
 	public void onGuiClose() {
-		mc.setScreenAndRender(system.INSTANCE.previousScreen);
+		mc.setScreenAndRender(VigillantSystem.INSTANCE.previousScreen);
 		currentColor = null;
 		if (searchField != null) {
 			searchField.setText("");

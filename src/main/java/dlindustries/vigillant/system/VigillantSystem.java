@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 @SuppressWarnings("all")
-public final class system {
+public final class VigillantSystem {
 	public RotatorManager rotatorManager;
 	public ProfileManager profileManager;
 	public ModuleManager moduleManager;
@@ -23,14 +23,14 @@ public final class system {
 	public static MinecraftClient mc;
 	public String version = " b1.8";
 	public static boolean BETA;
-	public static system INSTANCE;
+	public static VigillantSystem INSTANCE;
 	public boolean guiInitialized;
 	public ClickGui clickGui;
 	public Screen previousScreen = null;
 	public long lastModified;
 	public File systemJar;
 
-	public system() throws InterruptedException, IOException {
+	public VigillantSystem() throws InterruptedException, IOException {
 		INSTANCE = this;
 		this.eventManager = new EventManager();
 		this.moduleManager = new ModuleManager();
@@ -76,7 +76,7 @@ public final class system {
 
 	public void setLastModified() {
 		try {
-			this.systemJar = new File(system.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			this.systemJar = new File(VigillantSystem.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 			this.lastModified = systemJar.lastModified();
 		} catch (URISyntaxException ignored) {}
 	}

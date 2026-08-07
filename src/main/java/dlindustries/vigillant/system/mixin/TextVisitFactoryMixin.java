@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.mixin;
 
 import dlindustries.vigillant.system.module.modules.client.NameProtect;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.text.TextVisitFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +20,7 @@ public class TextVisitFactoryMixin {
             index = 0
     )
     private static String adjustText(String text) {
-        NameProtect nameProtect = system.INSTANCE.getModuleManager().getModule(NameProtect.class);
+        NameProtect nameProtect = VigillantSystem.INSTANCE.getModuleManager().getModule(NameProtect.class);
         if (nameProtect != null && nameProtect.isEnabled()) {
             return nameProtect.replaceName(text);
         }

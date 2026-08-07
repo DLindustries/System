@@ -11,7 +11,7 @@ import dlindustries.vigillant.system.module.modules.pot.AutoPotRefill;
 import dlindustries.vigillant.system.module.modules.render.*;
 import dlindustries.vigillant.system.module.modules.mace.*;
 import dlindustries.vigillant.system.module.setting.KeybindSetting;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.EncryptedString;
 import org.lwjgl.glfw.GLFW;
 
@@ -36,7 +36,9 @@ public final class ModuleManager implements ButtonListener {
 		add(new ShieldDisabler());
 		add(new AutoJumpReset());
 		add(new DoubleAnchor());
+		add(new SafeAnchor());
 		add(new HoverTotem());
+		add(new OpenHoverTotem());
 		add(new AnchorMacro());
 		add(new AirAnchor());
 		add(new AutoCrystal());
@@ -75,6 +77,8 @@ public final class ModuleManager implements ButtonListener {
 		add(new TargetHud());
 		add(new RenderBarrier());
 		add(new SuperVision());
+		add(new StashFinder());
+		add(new ChunkFinder());
 		add(new StorageEsp());
 		add(new ClickGUI());
 		add(new NameProtect());
@@ -87,25 +91,31 @@ public final class ModuleManager implements ButtonListener {
 		add(new AutoPickaxe());
 		add(new SwingSpeed());
 	}
+
 	public List<Module> getEnabledModules() {
 		return modules.stream()
 				.filter(Module::isEnabled)
 				.toList();
 	}
+
 	public List<Module> getModules() {
 		return modules;
 	}
+
 	public void addKeybinds() {
-		system.INSTANCE.getEventManager().add(ButtonListener.class, this);
+		VigillantSystem.INSTANCE.getEventManager().add(ButtonListener.class, this);
 
 		for (Module module : modules)
-			module.addSetting(new KeybindSetting(EncryptedString.of("Keybind"), module.getKey(), true).setDescription(EncryptedString.of("Key to enabled the module")));
+			module.addSetting(new KeybindSetting(EncryptedString.of("Keybind"), module.getKey(), true)
+					.setDescription(EncryptedString.of("Key to enabled the module")));
 	}
+
 	public List<Module> getModulesInCategory(Category category) {
 		return modules.stream()
 				.filter(module -> module.getCategory() == category)
 				.toList();
 	}
+
 	@SuppressWarnings("unchecked")
 	public <T extends Module> T getModule(Class<T> moduleClass) {
 		return (T) modules.stream()
@@ -113,9 +123,11 @@ public final class ModuleManager implements ButtonListener {
 				.findFirst()
 				.orElse(null);
 	}
+
 	public void add(Module module) {
 		modules.add(module);
 	}
+
 	@Override
 	public void onButtonPress(ButtonEvent event) {
 		if (event.button >= 179 && event.button <= 183 ||

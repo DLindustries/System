@@ -3,7 +3,7 @@ package dlindustries.vigillant.system.mixin;
 import dlindustries.vigillant.system.event.EventManager;
 import dlindustries.vigillant.system.event.events.*;
 import dlindustries.vigillant.system.module.modules.optimizer.PlacementOptimizer;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.Window;
@@ -32,7 +32,7 @@ public class MinecraftClientMixin {
 		if (world != null) {
 			TickListener.TickEvent event = new TickListener.TickEvent();
 			EventManager.fire(event);
-			PlacementOptimizer optimizer = system.INSTANCE.getModuleManager().getModule(PlacementOptimizer.class);
+			PlacementOptimizer optimizer = VigillantSystem.INSTANCE.getModuleManager().getModule(PlacementOptimizer.class);
 			if (optimizer != null && optimizer.isEnabled()) {
 				Item held = player.getMainHandStack().getItem();
 				boolean excludeAnchors = optimizer.shouldExcludeAnchors();
@@ -84,6 +84,6 @@ public class MinecraftClientMixin {
 
 	@Inject(method = "stop", at = @At("HEAD"))
 	private void onClose(CallbackInfo ci) {
-		system.INSTANCE.getProfileManager().saveProfile();
+		VigillantSystem.INSTANCE.getProfileManager().saveProfile();
 	}
 }

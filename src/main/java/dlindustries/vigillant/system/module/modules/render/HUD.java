@@ -40,7 +40,7 @@ public final class HUD extends Module implements HudListener {
 	@Override
 	public void onRenderHud(HudEvent event) {
 		if (mc.currentScreen instanceof ClickGui) return;
-		if (mc.currentScreen == dlindustries.vigillant.system.system.INSTANCE.clickGui) return;
+		if (mc.currentScreen == dlindustries.vigillant.system.VigillantSystem.INSTANCE.clickGui) return;
 		DrawContext context = event.context;
 		float scaleFactor = (float) mc.getWindow().getScaleFactor();
 		float invScale = 1.0f / scaleFactor;
@@ -49,7 +49,7 @@ public final class HUD extends Module implements HudListener {
 		if (info.getValue() && mc.player != null) {
 			String playerName = mc.player.getName().getString();
 			NameProtect nameProtect =
-					dlindustries.vigillant.system.system.INSTANCE.getModuleManager().getModule(
+					dlindustries.vigillant.system.VigillantSystem.INSTANCE.getModuleManager().getModule(
 							NameProtect.class);
 			if (nameProtect != null) {
 				playerName = nameProtect.replaceName(playerName);
@@ -104,7 +104,7 @@ public final class HUD extends Module implements HudListener {
 		}
 		if (modules.getValue()) {
 			int offset = 120;
-			List<Module> enabledModules = dlindustries.vigillant.system.system.INSTANCE
+			List<Module> enabledModules = dlindustries.vigillant.system.VigillantSystem.INSTANCE
 					.getModuleManager()
 					.getEnabledModules()
 					.stream()

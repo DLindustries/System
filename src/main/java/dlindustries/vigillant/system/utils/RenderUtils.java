@@ -23,7 +23,7 @@ import org.lwjgl.opengl.GL13;
 import java.awt.*;
 import java.util.function.Consumer;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 public final class RenderUtils {
 	public static boolean rendering3D = true;
 	public static Vec3d getCameraPos() {

@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.gui;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.gui.components.ModuleButton;
 import dlindustries.vigillant.system.module.Category;
 import dlindustries.vigillant.system.module.Module;
@@ -10,7 +10,7 @@ import net.minecraft.client.gui.DrawContext;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class Window {
 	public List<ModuleButton> moduleButtons = new ArrayList<>();
@@ -33,7 +33,7 @@ public final class Window {
 		this.category = category;
 		this.parent = parent;
 		int offset = height;
-		List<Module> sortedModules = new ArrayList<>(system.INSTANCE.getModuleManager().getModulesInCategory(category));
+		List<Module> sortedModules = new ArrayList<>(VigillantSystem.INSTANCE.getModuleManager().getModulesInCategory(category));
 		System.out.println("Window for " + category.name + " has " + sortedModules.size() + " modules.");
 		for (Module module : sortedModules) {
 			moduleButtons.add(new ModuleButton(this, module, offset));

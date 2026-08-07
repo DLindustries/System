@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.event;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public final class EventManager {
 	}
 
 	public static <L extends Listener, E extends Event<L>> void fire(E event) {
-		EventManager eventManager = system.INSTANCE.getEventManager();
+		EventManager eventManager = VigillantSystem.INSTANCE.getEventManager();
 		if (eventManager != null) {
 			eventManager.fireImpl(event);
 		}

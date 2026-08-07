@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.mixin;
 
 import dlindustries.vigillant.system.module.modules.render.NoBounce;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.CrystalUtils;
 import dlindustries.vigillant.system.utils.RenderUtils;
 import net.minecraft.block.Block;
@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 @Mixin(EndCrystalItem.class)
 public class EndCrystalItemMixin {
@@ -60,9 +60,9 @@ public class EndCrystalItemMixin {
 
 	@Inject(method = "useOnBlock", at = @At("HEAD"))
 	private void onUse(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		NoBounce noBounce = system.INSTANCE.getModuleManager().getModule(NoBounce.class);
+		NoBounce noBounce = VigillantSystem.INSTANCE.getModuleManager().getModule(NoBounce.class);
 		if (noBounce.isEnabled()) {
-			if (system.INSTANCE != null && mc.player != null) {
+			if (VigillantSystem.INSTANCE != null && mc.player != null) {
 				ItemStack mainHandStack = mc.player.getMainHandStack();
 
 				if (mainHandStack.isOf(Items.END_CRYSTAL)) {

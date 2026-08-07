@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.utils;
 
 import net.minecraft.client.gui.DrawContext;
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class TextRenderer {
 	public static void drawString(CharSequence string, DrawContext context, int x, int y, int color) {

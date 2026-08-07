@@ -3,7 +3,7 @@ package dlindustries.vigillant.system.mixin;
 import dlindustries.vigillant.system.event.EventManager;
 import dlindustries.vigillant.system.event.events.CameraUpdateListener;
 import dlindustries.vigillant.system.module.modules.optimizer.CameraOptimizer;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.block.enums.CameraSubmersionType;
 import net.minecraft.client.render.Camera;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +27,7 @@ public abstract class CameraMixin {
 
 	@Inject(at = @At("HEAD"), method = "clipToSpace(F)F", cancellable = true)
 	private void onClipToSpace(float desiredCameraDistance, CallbackInfoReturnable<Float> cir) {
-		CameraOptimizer optimizer = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+		CameraOptimizer optimizer = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
 		if (optimizer != null && optimizer.isNoClipEnabled()) {
 			cir.setReturnValue(desiredCameraDistance);
 		}
@@ -37,7 +37,7 @@ public abstract class CameraMixin {
 			method = "getSubmersionType()Lnet/minecraft/block/enums/CameraSubmersionType;",
 			cancellable = true)
 	private void onGetSubmersionType(CallbackInfoReturnable<CameraSubmersionType> cir) {
-		CameraOptimizer optimizer = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+		CameraOptimizer optimizer = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
 		if (optimizer != null && optimizer.isNoOverlayEnabled()) {
 			cir.setReturnValue(CameraSubmersionType.NONE);
 		}

@@ -7,7 +7,7 @@ public final class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		try {
-			new system();
+			new VigillantSystem();
 		} catch (InterruptedException | IOException ignored) {}
 	}
 }

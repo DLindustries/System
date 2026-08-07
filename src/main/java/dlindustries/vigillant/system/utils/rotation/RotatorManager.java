@@ -2,19 +2,19 @@ package dlindustries.vigillant.system.utils.rotation;
 
 import dlindustries.vigillant.system.event.EventManager;
 import dlindustries.vigillant.system.event.events.*;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.utils.RotationUtils;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.network.packet.s2c.play.PlayerPositionLookS2CPacket;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 
 public final class RotatorManager implements PacketSendListener, BlockBreakingListener, ItemUseListener, AttackListener, MovementPacketListener, PacketReceiveListener {
 	private boolean enabled;
 	private boolean rotateBack;
 	private boolean resetRotation;
-	private final EventManager eventManager = system.INSTANCE.eventManager;
+	private final EventManager eventManager = VigillantSystem.INSTANCE.eventManager;
 	private Rotation currentRotation;
 	private float clientYaw, clientPitch;
 	private float serverYaw, serverPitch;

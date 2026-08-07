@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import dlindustries.vigillant.system.module.modules.crystal.DhandMod;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 
 @Mixin(MinecraftClient.class)
 public class InventorySwitchMixin {
@@ -21,7 +21,7 @@ public class InventorySwitchMixin {
             return; // Ignore if not pressing inventory key or screen is open
         }
 
-        DhandMod module = system.INSTANCE.getModuleManager().getModule(DhandMod.class);
+        DhandMod module = VigillantSystem.INSTANCE.getModuleManager().getModule(DhandMod.class);
         if (module != null && module.isEnabled()) {
             DhandMod.handleInventoryKey();
             inventoryKey.setPressed(false);

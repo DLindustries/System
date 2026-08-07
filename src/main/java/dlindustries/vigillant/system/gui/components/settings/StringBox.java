@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.gui.components.settings;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.gui.components.ModuleButton;
 import dlindustries.vigillant.system.module.modules.client.ClickGUI;
 import dlindustries.vigillant.system.module.setting.Setting;
@@ -142,7 +142,7 @@ public final class StringBox extends RenderableSetting {
                     int keyCode = keyInput.key();
                     if (keyCode == GLFW.GLFW_KEY_ESCAPE || keyCode == GLFW.GLFW_KEY_ENTER) {
                         setting.setValue(content.strip());
-                        mc.setScreen(system.INSTANCE.clickGui);
+                        mc.setScreen(VigillantSystem.INSTANCE.clickGui);
                         return true;
                     }
                     if (keyInput.isPaste()) {

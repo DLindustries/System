@@ -1,7 +1,7 @@
 package dlindustries.vigillant.system.mixin;
 
 import dlindustries.vigillant.system.module.modules.optimizer.CameraOptimizer;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -32,7 +32,7 @@ public class ParticlesMixin {
         )
         private void onAddParticle(ParticleEffect effect, double x, double y, double z,
                                    double vx, double vy, double vz, CallbackInfoReturnable<Particle> ci) {
-            CameraOptimizer module = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+            CameraOptimizer module = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
             if (module != null && module.isNoParticlesEnabled()) {
                 ci.setReturnValue(null);
             }
@@ -43,7 +43,7 @@ public class ParticlesMixin {
 
         @Inject(method = "addBlockBreakParticles", at = @At("HEAD"), cancellable = true)
         private void onAddBlockBreakParticles(BlockPos pos, BlockState state, CallbackInfo ci) {
-            CameraOptimizer module = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+            CameraOptimizer module = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
             if (module != null && module.isNoBreakParticlesEnabled()) {
                 ci.cancel();
             }
@@ -54,7 +54,7 @@ public class ParticlesMixin {
 
         @Inject(method = "renderFireOverlay", at = @At("HEAD"), cancellable = true)
         private static void onFireOverlay(MatrixStack matrices, VertexConsumerProvider vertexConsumers, Sprite sprite, CallbackInfo ci) {
-            CameraOptimizer module = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+            CameraOptimizer module = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
             if (module != null && module.isNoParticlesEnabled()) ci.cancel();
         }
     }
@@ -63,7 +63,7 @@ public class ParticlesMixin {
 
         @Inject(method = "renderPortalOverlay", at = @At("HEAD"), cancellable = true)
         private void onPortalOverlay(DrawContext context, float nauseaStrength, CallbackInfo ci) {
-            CameraOptimizer module = system.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
+            CameraOptimizer module = VigillantSystem.INSTANCE.getModuleManager().getModule(CameraOptimizer.class);
             if (module != null && module.isNoOverlayEnabled()) ci.cancel();
         }
     }

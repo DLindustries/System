@@ -13,7 +13,7 @@ import net.minecraft.util.math.Direction;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 
 public final class BlockUtils {

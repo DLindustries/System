@@ -8,7 +8,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import java.util.HashSet;
 import java.util.Set;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class  FriendManager {
     private final Set<String> friends;

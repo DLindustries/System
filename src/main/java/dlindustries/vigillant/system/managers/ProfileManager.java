@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.module.Module;
 import dlindustries.vigillant.system.module.setting.*;
 import java.nio.file.*;
@@ -33,7 +33,7 @@ public final class ProfileManager {
 			profile = g.fromJson(content, JsonObject.class);
 			if (profile == null) return;
 
-			List<Module> modules = system.INSTANCE.getModuleManager().getModules();
+			List<Module> modules = VigillantSystem.INSTANCE.getModuleManager().getModules();
 			for (int moduleIndex = 0; moduleIndex < modules.size(); moduleIndex++) {
 				Module module = modules.get(moduleIndex);
 				String moduleNameKey = GetModuleName(module);
@@ -97,7 +97,7 @@ public final class ProfileManager {
 				try { Files.copy(profilePath, profileFolderPath.resolve("config.json.bak"), StandardCopyOption.REPLACE_EXISTING); } catch (Exception ignored) {}
 
 			profile = new JsonObject();
-			List<Module> modules = system.INSTANCE.getModuleManager().getModules();
+			List<Module> modules = VigillantSystem.INSTANCE.getModuleManager().getModules();
 
 			for (int moduleIndex = 0; moduleIndex < modules.size(); moduleIndex++) {
 				Module module = modules.get(moduleIndex);

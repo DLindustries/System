@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class InventoryUtils {
 

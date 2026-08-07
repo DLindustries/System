@@ -1,6 +1,6 @@
 package dlindustries.vigillant.system.gui.components;
 
-import dlindustries.vigillant.system.system;
+import dlindustries.vigillant.system.VigillantSystem;
 import dlindustries.vigillant.system.gui.ClickGui;
 import dlindustries.vigillant.system.gui.Window;
 import dlindustries.vigillant.system.gui.components.settings.*;
@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static dlindustries.vigillant.system.system.mc;
+import static dlindustries.vigillant.system.VigillantSystem.mc;
 
 public final class ModuleButton {
 	public List<RenderableSetting> settings = new ArrayList<>();
@@ -68,13 +68,13 @@ public final class ModuleButton {
 		int toAlpha = ClickGUI.alphaWindow.getValueInt();
 		currentColor = ColorUtils.smoothAlphaTransition(0.05F, toAlpha, currentColor);
 		Color toColor = module.isEnabled()
-				? Utils.getMainColor(255, system.INSTANCE.getModuleManager()
+				? Utils.getMainColor(255, VigillantSystem.INSTANCE.getModuleManager()
 				.getModulesInCategory(module.getCategory()).indexOf(module))
 				: Color.WHITE;
 
 		if (defaultColor != toColor)
 			defaultColor = ColorUtils.smoothColorTransition(0.1F, toColor, defaultColor);
-		int moduleIndex = system.INSTANCE.getModuleManager()
+		int moduleIndex = VigillantSystem.INSTANCE.getModuleManager()
 				.getModulesInCategory(module.getCategory()).indexOf(module);
 		context.fill(
 				parent.getX(),
