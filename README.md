@@ -6,7 +6,7 @@
 
 <a href="https://discord.gg/yynpznJVkC"><img src="https://invidget.switchblade.xyz/yynpznJVkC" alt="Discord Invite"/></a>
 
-> **🌐 Full website for non devs here:** [dlindustries.uk](https://system.daduncs.cloud)
+> **🌐 Full website for non devs here:** [System website](https://system.daduncs.cloud)
 
 ---
 
