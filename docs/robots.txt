@@ -2,6 +2,5 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Sitemap
 Sitemap: https://system.daduncs.cloud/sitemap.xml
-Sitemap: https://dlindustries.github.io/System/sitemap.xml
