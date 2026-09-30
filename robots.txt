@@ -1,0 +1,7 @@
+# Robots.txt for System Client (DL Industries)
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://system.daduncs.cloud/sitemap.xml
+Sitemap: https://dlindustries.github.io/System/sitemap.xml
