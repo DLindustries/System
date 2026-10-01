@@ -1,0 +1,17 @@
+{
+  "id": "trailer-launch",
+  "title": "System Bulletin",
+  "blocks": [
+    {
+      "type": "banner",
+      "tag": "OFFICIAL TRAILER",
+      "title": "Watch the Trailer!",
+      "description": "Watch our official trailer on YouTube.",
+      "primary_button": {
+        "label": "▶ Watch on YouTube",
+        "url": "https://www.youtube.com/watch?v=Wdv_b5RYLt8",
+        "style": "accent"
+      }
+    }
+  ]
+}
